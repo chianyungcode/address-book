@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="index.css" />
+    <title>GetContacts</title>
+  </head>
+  <body>
+    <div id="modal" class="modal">
+      <div class="modal-content">
+        <span class="close-button">&times;</span>
+        <h2>Add new contact</h2>
+        <form id="form-address" class="form-address">
+          <label for="name">Name</label>
+          <input
+            type="text"
+            id="name"
+            name="name"
+            class="input-field"
+            required
+          />
+          <label for="phone">Phone number</label>
+          <input
+            type="text"
+            id="phone"
+            name="phone"
+            class="input-field"
+            required
+          />
+          <label for="address">Address</label>
+          <input
+            type="text"
+            id="address"
+            name="address"
+            class="input-field"
+            required
+          />
+          <label for="phone">Email</label>
+          <input
+            type="email"
+            id="email"
+            name="email"
+            class="input-field"
+            required
+          />
+          <label for="age">Age</label>
+          <input type="text" id="age" name="age" class="input-field" required />
+          <button type="submit" class="button-submit">Simpan</button>
+        </form>
+      </div>
+    </div>
+    <header class="navbar_container">
+      <div class="navbar">GetContacts</div>
+    </header>
+    <form action="" class="search-container">
+      <input
+        id="search-name"
+        type="text"
+        placeholder="Search..."
+        class="search-input"
+      />
+    </form>
+    <section class="section_container" id="main">
+      <div class="main-contact">
+        <div class="sidebar">
+          <p class="sidebar_button">Create new contact</p>
+          <div class="sidebar-category">
+            <h1 class="heading-category">General</h1>
+            <p data-category="all" class="sidebar-category-label">
+              All Contact
+            </p>
+            <p data-category="trash" class="sidebar-category-label">Trash</p>
+          </div>
+          <div class="sidebar-category">
+            <h1 class="heading-category">Label</h1>
+            <p data-label="personal" class="sidebar-category-label">Personal</p>
+            <p data-label="work" class="sidebar-category-label">Work</p>
+          </div>
+        </div>
+        <div class="main-contact-content">
+          <h1 class="main-contact-content_title">All Contact</h1>
+          <table>
+            <thead>
+              <tr>
+                <th>Name</th>
+                <th>Phone number</th>
+                <th>Address</th>
+                <th>Email</th>
+                <th>Age</th>
+                <th>Action</th>
+              </tr>
+            </thead>
+            <tbody id="body-table"></tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+    <script src="index.js"></script>
+  </body>
+</html>
