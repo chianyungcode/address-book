@@ -4,6 +4,16 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="index.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,200..800;1,200..800&display=swap"
+      rel="stylesheet"
+    />
+    <script
+      src="https://kit.fontawesome.com/7c18d28409.js"
+      crossorigin="anonymous"
+    ></script>
     <title>GetContacts</title>
   </head>
   <body>
@@ -46,7 +56,7 @@
           />
           <label for="age">Age</label>
           <input type="text" id="age" name="age" class="input-field" required />
-          <button type="submit" class="button-submit">Simpan</button>
+          <button type="submit" class="button-submit">Save</button>
         </form>
       </div>
     </div>
@@ -64,10 +74,16 @@
     <section class="section_container" id="main">
       <div class="main-contact">
         <div class="sidebar">
-          <p class="sidebar_button">Create new contact</p>
+          <div class="sidebar_button">
+            <i class="fa-solid fa-plus"></i>
+            Add contact
+          </div>
           <div class="sidebar-category">
             <h1 class="heading-category">General</h1>
-            <p data-category="all" class="sidebar-category-label">
+            <p
+              data-category="all"
+              class="active-sidebar sidebar-category-label"
+            >
               All Contact
             </p>
             <p data-category="trash" class="sidebar-category-label">Trash</p>
@@ -79,7 +95,9 @@
           </div>
         </div>
         <div class="main-contact-content">
-          <h1 class="main-contact-content_title">All Contact</h1>
+          <h1 data-title-category="trasg" class="main-contact-content_title">
+            All Contact
+          </h1>
           <table>
             <thead>
               <tr>

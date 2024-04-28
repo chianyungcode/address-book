@@ -19,8 +19,12 @@ const createContactRow = (item) => {
     <td>${item.address}</td>
     <td>${item.age}</td>
     <td>
-      <div data-id=${item.id} class="edit-button">Edit</div>
-      <button data-id=${item.id} class="delete-button">Delete</button>
+    <div class="rounded-button edit-button" data-id=${item.id}>
+      <i  class="fa-regular fa-pen-to-square "></i>
+    </div>
+    <div class="rounded-button delete-button" data-id=${item.id}>
+      <i class="fa-solid fa-trash"></i>
+    </div>
     </td>`;
   return row;
 };
@@ -48,11 +52,13 @@ form.addEventListener("submit", (e) => {
 });
 
 document.addEventListener("click", function (e) {
-  if (e.target && e.target.classList.contains("delete-button")) {
-    const idToDelete = e.target.getAttribute("data-id");
+  if (e.target.closest(".delete-button")) {
+    const idToDelete = e.target
+      .closest(".delete-button")
+      .getAttribute("data-id");
     data.deleteData(parseInt(idToDelete));
     e.target.closest("tr").remove();
-  } else if (e.target && e.target.className === "edit-button") {
+  } else if (e.target.closest(".edit-button")) {
     const itemId = e.target.getAttribute("data-id");
     window.location.href = `/contact/index.html?id=${itemId}`;
   }
@@ -111,9 +117,45 @@ const data = {
 };
 
 document.addEventListener("DOMContentLoaded", () => {
-  const contactsData = data.getAllContact();
-  contactsData.forEach((item) => {
-    const createTableRow = createContactRow(item);
-    tableBody.appendChild(createTableRow);
+  const sidebarLabels = document.querySelectorAll(".sidebar-category-label");
+  const titleElement = document.querySelector(".main-contact-content_title");
+
+  sidebarLabels.forEach((label) => {
+    label.addEventListener("click", () => {
+      const category = label.getAttribute("data-category");
+      const contacts =
+        category === "all" ? data.getAllContact() : data.getTrashContact();
+
+      updateTitleAndContent(category, contacts);
+      setActiveSidebarLabel(label);
+    });
   });
+
+  loadInitialContacts();
 });
+
+function updateTitleAndContent(category, contacts) {
+  const title = category === "all" ? "All contact" : "Trash";
+  document.querySelector(".main-contact-content_title").textContent = title;
+
+  tableBody.innerHTML = "";
+  contacts.forEach((contact) => {
+    const row = createContactRow(contact);
+    tableBody.appendChild(row);
+  });
+}
+
+function setActiveSidebarLabel(activeLabel) {
+  document.querySelectorAll(".sidebar-category-label").forEach((label) => {
+    label.classList.remove("active-sidebar");
+  });
+  activeLabel.classList.add("active-sidebar");
+}
+
+function loadInitialContacts() {
+  const initialContacts = data.getAllContact();
+  initialContacts.forEach((contact) => {
+    const row = createContactRow(contact);
+    tableBody.appendChild(row);
+  });
+}

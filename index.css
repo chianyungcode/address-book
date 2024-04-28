@@ -1,5 +1,6 @@
 html {
   font-size: 16px;
+  background-color: #f9fafb;
 }
 
 * {
@@ -7,15 +8,29 @@ html {
   font-family: Helvetica, sans-serif;
 }
 
+:root {
+  --color-border: #262626;
+  --color-selected: #e63e21;
+  --text-muted: #cecfd2;
+  --bg-page: #000000;
+  --bg-container: #1b1b1b;
+  --radius-xl: 12px;
+  --radius-3xl: 24px;
+  --text-color: #e4e4e4;
+}
+
 *,
 *::before,
 *::after {
   box-sizing: border-box;
+  color: white;
 }
 
 body {
   line-height: 1.5;
   -webkit-font-smoothing: antialiased;
+  background-color: var(--bg-page);
+  height: 100vh;
 }
 
 .address-book {
@@ -27,11 +42,29 @@ body {
   font-weight: 700;
 }
 
+label {
+  font-weight: 600;
+}
+
 .input-field {
-  border: 2px solid black;
-  padding: 5px 10px;
-  border-radius: 10px;
+  border: 2px solid var(--color-border);
+  padding: 8px 16px;
+  border-radius: var(--radius-3xl);
   margin-bottom: 10px;
+  font-family: "Plus Jakarta Sans", sans-serif;
+
+  font-weight: 500;
+  color: #000;
+  background-color: #f9fafb;
+}
+
+.input-field:focus {
+  --tw-ring-offset-width: 2px;
+  --tw-ring-offset-color: #e63e21;
+  --tw-ring-shadow: 0 0 0 3px rgba(230, 62, 33, 1);
+
+  box-shadow: var(--tw-ring-shadow);
+  outline: none; /* Menghilangkan outline default */
 }
 
 .form-address {
@@ -41,16 +74,46 @@ body {
 }
 
 .button-submit {
-  display: inline-flex;
+  display: flex;
+  width: 100%;
   padding: 10px 20px;
   font-weight: 500;
   font-size: 1rem;
-  border-radius: 5px;
+  border-radius: 99px;
   justify-content: center;
-  background-color: #4caf50;
+  background-color: #e63e21;
   color: white;
   border: none;
   cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.rounded-button {
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  padding: 12px;
+  border-radius: 9999px;
+
+  cursor: pointer;
+}
+
+.delete-button {
+  background-color: #f26156;
+  transition: background-color 0.4s ease-out;
+}
+
+.delete-button:hover {
+  background-color: #c0473e;
+}
+
+.edit-button {
+  background-color: #c2c6a7;
+  transition: background-color 0.4s ease-out;
+}
+
+.edit-button:hover {
+  background-color: #9c9f84;
 }
 
 .search-container {
@@ -64,7 +127,9 @@ body {
 .search-input {
   border-radius: 80px;
   padding: 8px 12px;
-  border: 1px solid #ccc; /* Ganti dengan warna dan ketebalan border yang diinginkan */
+  border: 1px solid var(--color-border);
+  background-color: var(--bg-container);
+  color: var(--text-color);
 }
 
 .button-submit:hover {
@@ -78,6 +143,12 @@ body {
   height: 80px;
 }
 
+@media (max-width: 1024px) {
+  .navbar_container {
+    padding: 0 48px;
+  }
+}
+
 .navbar {
   font-weight: 600;
   font-size: 36px;
@@ -88,24 +159,60 @@ body {
   margin: 0 auto;
 }
 
+@media (max-width: 1024px) {
+  .section_container {
+    padding: 0 48px;
+  }
+}
+
 .main-contact {
   display: grid;
   grid-template-columns: repeat(8, 1fr);
+  column-gap: 24px;
 }
 
 .sidebar {
   display: flex;
   flex-direction: column;
+  background-color: var(--bg-container);
+  border-radius: 24px;
+  border: 2px solid var(--color-border);
+  padding: 24px 12px;
   row-gap: 1rem;
   grid-column: span 1;
 }
 
+/* Media query untuk tablet */
+@media (max-width: 768px) {
+  .sidebar {
+    padding: 16px 8px; /* Mengurangi padding */
+    grid-column: span 2; /* Menyesuaikan lebar grid */
+  }
+}
+
+/* Media query untuk mobile */
+@media (max-width: 480px) {
+  .sidebar {
+    flex-direction: row; /* Mengubah arah flex */
+    justify-content: space-between; /* Menyesuaikan penjajaran item */
+    padding: 12px 6px; /* Mengurangi padding lebih lanjut */
+    grid-column: span 3; /* Menyesuaikan lebar grid */
+  }
+}
+
 .sidebar_button {
+  font-family: "Plus Jakarta Sans", sans-serif;
+  letter-spacing: -0.4px;
+  font-weight: 800;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  column-gap: 4px;
   cursor: pointer;
   padding: 8px 16px;
   border-radius: 32px;
-  background-color: #726f93;
-  color: white;
+  background-color: #e63e21;
+  color: #e4e4e4;
   font-weight: 500;
 }
 
@@ -116,19 +223,36 @@ body {
 }
 
 .heading-category {
-  font-weight: 600;
-  font-size: 24px;
+  font-family: "Plus Jakarta Sans", sans-serif;
+  font-weight: 700;
+  font-size: 20px;
+  color: var(--text-color);
+}
+
+@media (max-width: 1024px) {
+  .heading-category {
+    font-size: 16px;
+  }
 }
 
 .main-contact-content {
   grid-column: span 7;
+  background-color: var(--bg-container);
+  border-radius: 24px;
+  border: 2px solid var(--color-border);
+  padding: 24px 24px;
+}
 
-  padding: 0 24px;
+@media (max-width: 768px) {
+  .main-contact-content {
+    grid-column: span 6;
+  }
 }
 
 .main-contact-content_title {
   font-weight: 600;
   font-size: 36px;
+  color: var(--text-color);
 }
 
 table {
@@ -140,6 +264,7 @@ th,
 td {
   text-align: left;
   padding: 8px;
+  color: var(--text-color);
 }
 
 button {
@@ -164,10 +289,10 @@ th {
 }
 
 .modal-content {
-  background-color: #fefefe;
+  background-color: var(--bg-container);
   margin: 15% auto;
   padding: 20px;
-  border: 1px solid #888;
+  border: 1px solid var(--color-border);
   border-radius: 12px;
   width: auto;
   max-width: 40%;
@@ -190,11 +315,26 @@ close-button:focus {
 }
 
 .active-sidebar {
-  background-color: red;
+  background: linear-gradient(
+    269deg,
+    #e63e21 9.61%,
+    rgba(51, 19, 14, 0) 111.95%
+  );
+  border: 3px solid var(--color-border);
+  color: #ffff;
 }
 
 .sidebar-category-label {
   cursor: pointer;
+  border-radius: var(--radius-xl);
+  padding: 4px 12px;
+  color: var(--text-muted);
+}
+
+@media (max-width: 1024px) {
+  .sidebar-category-label {
+    font-size: 14px;
+  }
 }
 
 table {
@@ -205,4 +345,46 @@ table,
 th,
 td {
   border: none;
+}
+
+.plus-jakarta-sans-light {
+  font-family: "Plus Jakarta Sans", sans-serif;
+  font-optical-sizing: auto;
+  font-weight: 200;
+  font-style: normal;
+}
+
+.plus-jakarta-sans-normal {
+  font-family: "Plus Jakarta Sans", sans-serif;
+  font-optical-sizing: auto;
+  font-weight: 400;
+  font-style: normal;
+}
+
+.plus-jakarta-sans-medium {
+  font-family: "Plus Jakarta Sans", sans-serif;
+  font-optical-sizing: auto;
+  font-weight: 500;
+  font-style: normal;
+}
+
+.plus-jakarta-sans-semibold {
+  font-family: "Plus Jakarta Sans", sans-serif;
+  font-optical-sizing: auto;
+  font-weight: 600;
+  font-style: normal;
+}
+
+.plus-jakarta-sans-bold {
+  font-family: "Plus Jakarta Sans", sans-serif;
+  font-optical-sizing: auto;
+  font-weight: 700;
+  font-style: normal;
+}
+
+.plus-jakarta-sans-extrabold {
+  font-family: "Plus Jakarta Sans", sans-serif;
+  font-optical-sizing: auto;
+  font-weight: 800;
+  font-style: normal;
 }
