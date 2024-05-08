@@ -16,27 +16,41 @@ html {
 body {
   line-height: 1.5;
   -webkit-font-smoothing: antialiased;
+  width: 100%;
+  background-color: #000;
 }
 
 .container {
-  max-width: 24rem;
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  height: 100dvh;
+  max-width: 48rem;
   padding: 3rem 4rem;
+  margin: auto;
+}
+
+.container > h1 {
+  color: white;
 }
 
 .form-contact {
-  box-shadow: 2px 2px 4px #aaaaaa;
+  /* box-shadow: 2px 2px 4px #aaaaaa; */
+  border: 2px solid #262626;
+  background-color: #1b1b1b;
+  color: white;
   padding: 1rem 2rem;
-  border-radius: 8px;
+  border-radius: 16px;
   display: flex;
   flex-direction: column;
   row-gap: 1rem;
 }
-
 input {
   border-radius: 10px;
   padding: 4px 8px;
   border: 1px solid #888888;
   outline-offset: 4px;
+  outline-color: #262626;
 }
 
 button {

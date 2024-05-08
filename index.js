@@ -29,6 +29,25 @@ const createContactRow = (item) => {
   return row;
 };
 
+const createContactRowTrash = (item) => {
+  const row = document.createElement("tr");
+  row.innerHTML = `
+    <td>${item.name}</td>
+    <td>${item.phone}</td>
+    <td>${item.email}</td>
+    <td>${item.address}</td>
+    <td>${item.age}</td>
+    <td>
+    <div class="rounded-button edit-button" data-id=${item.id}>
+      <i  class="fa-regular fa-pen-to-square "></i>
+    </div>
+    <div class="rounded-button delete-button trash" data-id=${item.id}>
+      <i class="fa-solid fa-trash"></i>
+    </div>
+    </td>`;
+  return row;
+};
+
 form.addEventListener("submit", (e) => {
   e.preventDefault();
 
@@ -113,6 +132,15 @@ const data = {
 
     localStorage.setItem("contacts", JSON.stringify(contactsData));
     localStorage.setItem("trash", JSON.stringify(trashContact));
+  },
+  deleteDataTrash: (id) => {
+    const contactsData = data.getAllContact();
+    const trashContact = data.getTrashContact();
+
+    const index = contactsData.findIndex((item) => item.id === id);
+    if (index !== -1) {
+      trashContact.splice(index, 1);
+    }
   },
 };
 
